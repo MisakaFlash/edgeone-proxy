@@ -47,7 +47,7 @@ export async function onRequest(context) {
             const locationHeader = response.headers.get('location');
             if (locationHeader) {
                 const absoluteLocation = new URL(locationHeader, actualUrlStr).href;
-                const modifiedLocation = `/proxy?url=${encodeURIComponent(absoluteLocation)}`;
+                const modifiedLocation = `/=${encodeURIComponent(absoluteLocation)}`;
                 finalHeaders.set('Location', modifiedLocation);
             }
             return new Response(null, { status: response.status, headers: finalHeaders });
